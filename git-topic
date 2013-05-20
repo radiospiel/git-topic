@@ -27,6 +27,7 @@ git topic                   ... Show current topic
 git topic list              ... Show all topic branches
 git topic <name>            ... Starts a new or switches to an existing topic branch.
 git topic merge [ target ]  ... Merges the topic branch back into target (or "master").
+git topic finish [ target ] ... Like "merge", but stays in the target branch.
 
 Options are:
 
@@ -265,7 +266,7 @@ module Commands
 end
 
 module Commands
-  def merge(target=nil)
+  def finish(target=nil, merge = false)
     unless current_topic
       raise "You are not on a topic branch"
     end
@@ -278,7 +279,11 @@ module Commands
     # is it clean?
     git :checkout, target
     git :merge, branch, "--no-ff", "-m", message
-    git :checkout, branch
+    git :checkout, branch if merge
+  end
+
+  def merge(target=nil)
+    finish target, :merge
   end
 end
 
