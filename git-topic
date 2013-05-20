@@ -209,7 +209,7 @@ TEXT
 
   # get the short description from the description file
   def short_description
-    File.readlines(description_file).first.gsub(/^#*\s*/, "")
+    File.readlines(description_file).first.gsub(/^#*\s*/, "").chomp
   end
 
   # return the name of the current user
