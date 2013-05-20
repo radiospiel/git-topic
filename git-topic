@@ -12,6 +12,7 @@
 require 'tmpdir'
 require 'logger'
 require "fileutils"
+require 'tmpdir'
 
 # (1) load trollop code -----------------------------------------------
 # The Trollop source code is embedded in this file, below __END__. 
@@ -75,7 +76,10 @@ module Helpers
     args.unshift "git"
     LOGGER.debug escaped_command(*args)
 
-    IO.popen(args.map(&:to_s), &:read).tap do
+    # Note: this does not work with ruby 1.8
+    # command = args.map(&:to_s)
+    command = escaped_command(*args)
+    IO.popen(command, &:read).tap do
       raise Error, "'#{escaped_command(*args)}' failed with exitstatus #{$?.exitstatus}" if $?.exitstatus != 0
     end
   end
@@ -150,11 +154,19 @@ module Helpers
 #  
 TEXT
 
+  # return the name of a temp file.
+  def tmppath(&block)
+    path = File.join(Dir.tmpdir, "git-topic.#{$$}.tmp")
+    yield(path)
+  ensure
+    File.unlink(path) if File.exists?(path)
+  end
+  
   # run editor to create a description
   def get_description
     description = nil
   
-    Dir::Tmpname.create('git-topic') do |path|
+    tmppath do |path|
       File.write(path, TEMPLATE)
       system ENV["EDITOR"] || "vi", path
 
