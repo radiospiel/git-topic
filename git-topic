@@ -1,10 +1,10 @@
-#!/Users/eno/.rvm/rubies/ruby-1.9.2-p318/bin/ruby
-#/usr/bin/env ruby
+#!/usr/bin/env ruby
+#
 # git-topic -- manage topic branches w/git
 #
 # Author::    Enrico Thierbach (mailto: eno@open-lab.org)
 # Copyright:: Copyright 2012 Enrico Thierbach
-# License::   the same terms as ruby itself
+# License::   Simplified BSD License, see COPYING.BSD
 #
 # Note: this file uses the trollop.rb code. That code is integrated into
 # this file (see below under __END__). The Copyright for the trollop.rb
