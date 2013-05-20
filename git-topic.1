@@ -1,0 +1,49 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TOPIC" "" "May 2013" "" "Git addons"
+.
+.SH "NAME"
+\fBtopic\fR \- handle topic branches with ease\.
+.
+.SH "SYNOPSIS"
+\fBgit topic <option> command\fR
+.
+.SH "DESCRIPTION"
+An opinionated tool for topic branches\.
+.
+.SH "COMMANDS"
+.
+.TP
+\fBgit topic\fR
+Show the current topic
+.
+.TP
+\fBgit topic list\fR
+Show all topic branches
+.
+.TP
+\fBgit topic switch <name>\fR, \fBgit topic <name>\fR
+Switch to the specified topic
+.
+.TP
+\fBgit topic merge\fR \fItarget\fR
+Merge the current topic branch into \fBtarget\fR\. The \fBtarget\fR name is optional and defaults to \fBmaster\fR\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-\-short\fR
+Show only the short description when running \fBgit topic\fR
+.
+.SH "BUGS"
+None known yet\.
+.
+.SH "AUTHOR"
+@radiospiel (http://github\.com/radiospiel)
+.
+.SH "COPYRIGHT"
+The git\-topic tool is copyrighted under the terms of the Simplified BSD License\. Check the file COPYING\.BSD for details\.
+.
+.SH "SEE ALSO"
+
