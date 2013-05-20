@@ -20,9 +20,12 @@ An opinionated tool for topic branches.
   * `git topic switch <var>name</var>`, `git topic <var>name</var>`:
     Switch to the specified topic
 
-  * `git topic merge` <var>target</var>:
+  * `git topic merge <var>target</var>`:
     Merge the current topic branch into `target`. The `target` name is optional and
     defaults to `master`.
+
+  * `git topic finish <var>target</var>`:
+    Like merge, but stays in the target branch.
 
 ## OPTIONS
 
