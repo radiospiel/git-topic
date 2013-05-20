@@ -40,7 +40,15 @@ None known yet.
 ## COPYRIGHT
 
 The git-topic tool is copyrighted under the terms of the Simplified BSD License. Check the file COPYING.BSD for details.
-## SEE ALSO
+
+## INSTALLATION
+
+Install git-topic via `make install`. Make sure /usr/local/bin is in your `$PATH`, and /usr/local/share/man is in your `$MANPATH`.
+
+## CONTRIBUTIONS
+
+Fork me on github: https://github.com/radiospiel/git-topic
+
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
@@ -49,7 +57,8 @@ The git-topic tool is copyrighted under the terms of the Simplified BSD License.
 [BUGS]: #BUGS "BUGS"
 [AUTHOR]: #AUTHOR "AUTHOR"
 [COPYRIGHT]: #COPYRIGHT "COPYRIGHT"
-[SEE ALSO]: #SEE-ALSO "SEE ALSO"
+[INSTALLATION]: #INSTALLATION "INSTALLATION"
+[CONTRIBUTIONS]: #CONTRIBUTIONS "CONTRIBUTIONS"
 
 
 [topic]: git-topic.html
