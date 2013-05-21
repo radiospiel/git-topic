@@ -114,8 +114,9 @@ module Helpers
       end
   end
 
-  def branches
-    @branches ||= git(:branch, "--no-color", "--list").split("\n")
+  def branches(*args)
+    args.concat [ "--no-color", "--list" ]
+    @branches ||= git(:branch, *args).split("\n")
     @branches.map { |line| line.gsub(/^[\* ] /, "")}
   end
 
@@ -125,8 +126,8 @@ module Helpers
 
   TOPIC_REGEXP = /\Atopic-(\S+)\z/
 
-  def topic_branches
-    branches.grep(TOPIC_REGEXP)
+  def topic_branches(*args)
+    branches(*args).grep(TOPIC_REGEXP)
   end
 
   def current_topic
@@ -292,6 +293,16 @@ module Commands
 
   def merge(target=nil)
     finish target, :merge
+  end
+end
+
+module Commands
+  def clean
+    check_for_clean_directory!
+    
+    topic_branches("--merged", "master").each do |branch|
+      git! "branch", "-d", branch
+    end
   end
 end
 
