@@ -27,6 +27,9 @@ An opinionated tool for topic branches.
   * `git topic finish <var>target</var>`:
     Like merge, but stays in the target branch.
 
+  * `git topic clean`:
+    Delete all merged topic branches.
+
 ## OPTIONS
 
   * `--short`:

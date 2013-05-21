@@ -294,9 +294,7 @@ module Commands
   def clean
     check_for_clean_directory!
     
-    require "pp"
     topic_branches("--merged", "master").each do |branch|
-      pp branch
       git! "branch", "-d", branch
     end
   end
