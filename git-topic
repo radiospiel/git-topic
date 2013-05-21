@@ -260,7 +260,8 @@ module Commands
       
       git :add, file
       git :commit, file, "-m", "topic #{topic}: #{short_description}"
-      git :push, "-u", "origin", topic_branch
+      # Do not push topic_branch to origin
+      # git :push, "-u", "origin", topic_branch
     end
   end
 end
