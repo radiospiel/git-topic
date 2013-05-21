@@ -206,6 +206,7 @@ TEXT
   # read the description from the file
   def description
     File.read(description_file)
+  rescue Errno::ENOENT
   end
 
   # get the short description from the description file
@@ -232,7 +233,12 @@ end
 
 module Commands
   def show
-    if options[:short]
+    if !description
+      if d = get_description
+        File.write(description_file, d)
+        git :add, description_file 
+      end
+    elsif options[:short]
       puts short_description
     else
       puts description
