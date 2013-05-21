@@ -234,7 +234,9 @@ end
 
 module Commands
   def show
-    if !description
+    if !current_topic
+      raise "#{current_branch} is not a topic branch."
+    elsif !description
       if d = get_description
         File.write(description_file, d)
         git :add, description_file 
