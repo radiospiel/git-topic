@@ -77,7 +77,8 @@ module Helpers
     args.unshift "git"
     LOGGER.debug escaped_command(*args)
 
-    # Note: this does not work with ruby 1.8
+    # Note: the next line does not work with ruby 1.8, hence we use our
+    # escaped_command code instead.
     # command = args.map(&:to_s)
     command = escaped_command(*args)
     IO.popen(command, &:read).tap do
@@ -123,7 +124,7 @@ module Helpers
     @current_branch ||= git("rev-parse", "--abbrev-ref", "HEAD").split("\n").first
   end
 
-  TOPIC_REGEXP = /\Atopic-\S+-(\S+)\z/
+  TOPIC_REGEXP = /\Atopic-(\S+)\z/
 
   def topic_branches(*args)
     branches(*args).grep(TOPIC_REGEXP)
@@ -250,7 +251,7 @@ module Commands
   def switch(topic)
     check_for_clean_directory!
     
-    topic_branch = "topic-#{username}-#{topic}"
+    topic_branch = "topic-#{topic}"
     if topic_branches.include?(topic_branch)
       git! :checkout, topic_branch
     elsif description = get_description
@@ -261,7 +262,8 @@ module Commands
       
       git :add, file
       git :commit, file, "-m", "topic #{topic}: #{short_description}"
-      git :push, "-u", "origin", topic_branch
+      # Do not push topic_branch to origin
+      # git :push, "-u", "origin", topic_branch
     end
   end
 end
