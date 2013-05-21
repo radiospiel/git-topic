@@ -77,7 +77,8 @@ module Helpers
     args.unshift "git"
     LOGGER.debug escaped_command(*args)
 
-    # Note: this does not work with ruby 1.8
+    # Note: the next line does not work with ruby 1.8, hence we use our
+    # escaped_command code instead.
     # command = args.map(&:to_s)
     command = escaped_command(*args)
     IO.popen(command, &:read).tap do
