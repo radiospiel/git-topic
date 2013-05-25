@@ -171,8 +171,9 @@ TEXT
   
     tmppath do |path|
       File.write(path, TEMPLATE)
-      system ENV["EDITOR"] || "vi", path
 
+      editor = ENV["EDITOR"] || "vi"
+      system "#{editor} #{path}"
       next unless $?.exitstatus == 0
 
       description = []
