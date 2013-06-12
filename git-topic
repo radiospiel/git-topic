@@ -124,7 +124,7 @@ module Helpers
     @current_branch ||= git("rev-parse", "--abbrev-ref", "HEAD").split("\n").first
   end
 
-  TOPIC_REGEXP = /\Atopic-(\S+)\z/
+  TOPIC_REGEXP = /\Atopic[\/-](\S+)\z/
 
   def topic_branches(*args)
     branches(*args).grep(TOPIC_REGEXP)
@@ -260,9 +260,13 @@ module Commands
   def switch(topic)
     check_for_clean_directory!
     
-    topic_branch = "topic-#{topic}"
+    topic_branch = "topic\/#{topic}"
+    topic_branch_old = "topic-#{topic}"
+    
     if topic_branches.include?(topic_branch)
       git! :checkout, topic_branch
+    elsif topic_branches.include?(topic_branch_old)
+      git! :checkout, topic_branch_old
     elsif description = get_description
       git :checkout, "-b", topic_branch
 
